@@ -1,5 +1,4 @@
 from graphics import *
-from Button import Button
 
 """
 Rules for room designing

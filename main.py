@@ -1,7 +1,6 @@
 from graphics import *
 from time import sleep, perf_counter
 from random import randint
-from Button import Button
 import tkinter
 
 """
@@ -105,10 +104,10 @@ class AudioSystem:
 
 class StartMenu:
     def __init__(self, win):
-        background = overground("palevioletred1")
+        background = overground("white")
         background.draw(win)
 
-        titletext = Text(Point(250, 40), "Jack Black")
+        titletext = Text(Point(250, 40), "BlackJack")
         titletext.setSize(32)
         titletext.draw(win)
 
