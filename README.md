@@ -1,6 +1,6 @@
 # Robot Blackjack
 
-![Cool Robot](/readme_files/cool robot.gif)
+![Cool Robot](https://github.com/Happyfacemike/robot-blackjack/blob/master/readme_files/cool%20robot.gif)
 
 A barebones prototype for a topdown 2D RPG Blackjack game (Sounds odd but I'll make it work).
 Currently on hold due to school and work, but expect to see it rocket off in mid-November (when my computer science class starts).
