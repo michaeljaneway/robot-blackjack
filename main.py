@@ -115,7 +115,7 @@ class StartMenu:
         spacetext.setSize(22)
         spacetext.draw(win)
 
-        jakeface = Image(Point(250, 200), "Main Menu.gif")
+        jakeface = Image(Point(250, 200), "assets/Main Menu.gif")
         jakeface.draw(win)
 
         while True:
@@ -137,7 +137,7 @@ class Character:
         self.sprite1 = Rectangle(Point(235, 235), Point(265, 265))
         self.sprite1.setWidth(0)
 
-        self.sprite2 = Image(self.sprite1.getCenter(), "pixel-robot/right-robot-idle.gif")
+        self.sprite2 = Image(self.sprite1.getCenter(), "assets/pixel-robot/right-robot-idle.gif")
         self.sprite2.draw(win)
 
         self.frame_num = 0
@@ -259,16 +259,16 @@ class Character:
 
 
         if self.m_left:
-            self.sprite2.change_frame("pixel-robot/left-robot-run.gif", self.frame_num)
+            self.sprite2.change_frame("assets/pixel-robot/left-robot-run.gif", self.frame_num)
 
         elif self.m_right:
-            self.sprite2.change_frame("pixel-robot/right-robot-run.gif", self.frame_num)
+            self.sprite2.change_frame("assets/pixel-robot/right-robot-run.gif", self.frame_num)
 
         elif self.f_left:
-            self.sprite2.change_frame("pixel-robot/left-robot-idle.gif", self.frame_num)
+            self.sprite2.change_frame("assets/pixel-robot/left-robot-idle.gif", self.frame_num)
 
         elif self.f_right:
-            self.sprite2.change_frame("pixel-robot/right-robot-idle.gif", self.frame_num)
+            self.sprite2.change_frame("assets/pixel-robot/right-robot-idle.gif", self.frame_num)
 
 
         if self.frame_num <= 5 and time.time_ns() - self.timer >= 90000000:
@@ -350,7 +350,7 @@ class roomsystem:
         # Draws the contents of the room
         room_num = self.room_map[self.current_position[1]][self.current_position[0]]
 
-        self.room_img = Image(Point(250, 250), "rooms_img/{}.gif".format(room_num))
+        self.room_img = Image(Point(250, 250), "assets/rooms_img/{}.gif".format(room_num))
         self.room_img.draw(win)
 
         # Logic to draw doors
