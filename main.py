@@ -1,7 +1,6 @@
 from graphics import *
 from time import sleep, perf_counter
 from random import randint
-import tkinter
 
 """
 CC0 (Public domain) background assets are from https://opengameart.org/content/colony-sim-extended-version
@@ -560,6 +559,8 @@ def main():
 
         x1 = player.sprite1.getCenter().getX() - 250
         x2 = player.sprite1.getCenter().getX() + 250
+        y1 = player.sprite1.getCenter().getY() + 250
+        y2 = player.sprite1.getCenter().getY() - 250
         win.setCoords(x1, y1, x2, y2)
 
         if keyboard.is_pressed("esc"):
