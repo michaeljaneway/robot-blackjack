@@ -257,7 +257,7 @@ class Character:
             self.m_left = False
             self.m_right = False
 
-
+        # Animation Section
         if self.m_left:
             self.sprite2.change_frame("assets/pixel-robot/left-robot-run.gif", self.frame_num)
 
@@ -282,6 +282,7 @@ class Character:
 
 class ExitMenu:
     def __init__(self, win):
+        win.setCoords(0, 0, 500, 500)
         background = overground('lightgrey')
         background.draw(win)
 
@@ -534,6 +535,11 @@ def main():
                   Rectangle(Point(500, 0), Point(500, 500)),
                   Rectangle(Point(0, 500), Point(500, 500))]
 
+    # Coords
+    x1, y1 = 0, 500
+    x2, y2 = 500, 0
+    win.setCoords(x1, y1, x2, y2)
+
     # List of all objects that the player will collide with
     pcollide_obj = []
 
@@ -551,6 +557,10 @@ def main():
         winroomsystem.room_sys_cycle(player, win, pcollide_obj)
         player.updateplayer(pcollide_obj, win)
         update()
+
+        x1 = player.sprite1.getCenter().getX() - 250
+        x2 = player.sprite1.getCenter().getX() + 250
+        win.setCoords(x1, y1, x2, y2)
 
         if keyboard.is_pressed("esc"):
             ExitMenu(win)
