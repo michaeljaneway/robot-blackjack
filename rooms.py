@@ -6,6 +6,37 @@ Rules for room designing
 
 """
 
+
+def create_room(room_num):
+    room_objs = []
+    encounter_objs = []
+
+    if room_num == 1:
+        cRectangles = [Rectangle(Point(65, 95), Point(405, 102)),
+                       Rectangle(Point(65, 95), Point(70, 400)),
+                       Rectangle(Point(405, 390), Point(70, 400)),
+                       Rectangle(Point(405, 390), Point(70, 400)),
+                       Rectangle(Point(396.0, 96.0), Point(404.0, 194.0)),
+                       Rectangle(Point(404.0, 188.0), Point(498.0, 196.0)),
+                       Rectangle(Point(396.0, 296.0), Point(403.0, 397.0)),
+                       Rectangle(Point(401.0, 295.0), Point(497.0, 309.0))
+                       ]
+
+        for rect in cRectangles:
+            rect.setWidth(0)
+            room_objs.append(rect)
+
+    elif room_num == 2:
+        cRectangles = [Rectangle(Point(0.0, 197.0), Point(499.0, 188.0)),
+                       Rectangle(Point(0.0, 296.0), Point(499.0, 308.0))]
+
+        for rect in cRectangles:
+            rect.setWidth(0)
+            room_objs.append(rect)
+
+    return room_objs, encounter_objs
+
+
 class Button:
     """A button is a labeled rectangle in a window. It is activated or
     deactivated with the activate() and deactivate() methods. The clicked(p)
@@ -55,35 +86,6 @@ class Button:
         self.deactivate()
         self.label.undraw()
         self.rect.undraw()
-
-def create_room(room_num):
-    room_objs = []
-    encounter_objs = []
-
-    if room_num == 1:
-        cRectangles = [Rectangle(Point(65, 95), Point(405, 102)),
-                       Rectangle(Point(65, 95), Point(70, 400)),
-                       Rectangle(Point(405, 390), Point(70, 400)),
-                       Rectangle(Point(405, 390), Point(70, 400)),
-                       Rectangle(Point(396.0, 96.0), Point(404.0, 194.0)),
-                       Rectangle(Point(404.0, 188.0), Point(498.0, 196.0)),
-                       Rectangle(Point(396.0, 296.0), Point(403.0, 397.0)),
-                       Rectangle(Point(401.0, 295.0), Point(497.0, 309.0))
-                       ]
-
-        for rect in cRectangles:
-            rect.setWidth(0)
-            room_objs.append(rect)
-
-    elif room_num == 2:
-        cRectangles = [Rectangle(Point(0.0, 197.0), Point(499.0, 188.0)),
-                       Rectangle(Point(0.0, 296.0), Point(499.0, 308.0))]
-
-        for rect in cRectangles:
-            rect.setWidth(0)
-            room_objs.append(rect)
-
-    return room_objs, encounter_objs
 
 # Previews a room based on number entered in roomnum
 

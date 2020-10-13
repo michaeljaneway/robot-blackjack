@@ -101,7 +101,10 @@ class Character:
         self.f_right = True
 
     def updateplayer(self, collidable_objs, win):
-        self.wasdmove(self.sprite1, self.sprite2)
+        move_speed = 0.3
+        self.sprite1.draw(win)
+
+        self.wasdmove(self.sprite1, self.sprite2, move_speed)
         self.sprite2.undraw()
 
         self.sprite2.anchor = self.sprite1.getCenter()
@@ -109,15 +112,11 @@ class Character:
 
         # Makes the player collide with every solid object in the collidable_obj list
         for s_obj in collidable_objs:
-            move_from_collide(self.sprite1, s_obj)
+            move_from_collide(self.sprite1, s_obj, move_speed)
 
-    def wasdmove(self, obj, sprite):
-        # Moves player approximately the same length in all directions
-        # Diagonal movement would be quicker if there was only one speed option
-        # Origionally was .07 and .045
-        reg_move_spd = 0.1
-        diag_move_spd = 0.07
-
+    def wasdmove(self, obj, sprite, move_speed):
+        reg_move_spd = move_speed
+        diag_move_spd = (move_speed/4) * 3
 
         # North-West
         if keyboard.is_pressed("w") and keyboard.is_pressed("a"):
@@ -414,7 +413,7 @@ def overground(color):
 
 
 # Moves a moving rectangle back from a static object, creating a collision effect
-def move_from_collide(movobj, statobj):
+def move_from_collide(movobj, statobj, move_speed):
     # Top Left
     P11 = movobj.getP1()
 
@@ -438,20 +437,20 @@ def move_from_collide(movobj, statobj):
     P22 = Point(statobjx[1], statobjy[1])
 
     # Bottom Edge Collision Detection
-    if (P21.x < P11.x < P22.x or P21.x < P14.x < P22.x) and P22.y - 0.1 < P11.y < P22.y:
-        movobj.move(0, 0.1)
+    if (P21.x < P11.x < P22.x or P21.x < P14.x < P22.x) and P22.y - move_speed < P11.y < P22.y:
+        movobj.move(0, move_speed)
 
     # Right Edge Collision Detection
-    elif P22.x - 0.1 < P11.x < P22.x and (P21.y < P11.y < P22.y or P21.y < P13.y < P22.y):
-        movobj.move(0.1, 0)
+    elif P22.x - move_speed < P11.x < P22.x and (P21.y < P11.y < P22.y or P21.y < P13.y < P22.y):
+        movobj.move(move_speed, 0)
 
     # Top Edge Collision Detection
-    elif (P21.x < P12.x < P22.x or P21.x < P13.x < P22.x) and P21.y > P12.y > P21.y - 0.1:
-        movobj.move(0, -0.1)
+    elif (P21.x < P12.x < P22.x or P21.x < P13.x < P22.x) and P21.y > P12.y > P21.y - move_speed:
+        movobj.move(0, -1 * move_speed)
 
     # Left Edge Collision Detection
-    elif P21.x - 0.1 < P14.x < P21.x and (P21.y < P14.y < P22.y or P21.y < P12.y < P22.y):
-        movobj.move(-0.1, 0)
+    elif P21.x - move_speed < P14.x < P21.x and (P21.y < P14.y < P22.y or P21.y < P12.y < P22.y):
+        movobj.move(-1 * move_speed, 0)
 
 # Checks if the character rectangle is over a point
 def check_if_over(character, point):
