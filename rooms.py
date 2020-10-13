@@ -6,6 +6,56 @@ Rules for room designing
 
 """
 
+class Button:
+    """A button is a labeled rectangle in a window. It is activated or
+    deactivated with the activate() and deactivate() methods. The clicked(p)
+    method returns true if the button is active and p is inside it."""
+
+    def __init__(self, win, center, width, height, label):
+        """ Creates a rectangular button, eg: quit_b = Button(myWin, centerPoint,
+        width, height, 'Quit') """
+        w,h = width/2.0, height/2.0
+        x,y = center.getX(), center.getY()
+        self.xmax, self.xmin = x+w, x-w
+        self.ymax, self.ymin = y+h, y-h
+        p1 = Point(self.xmin, self.ymin)
+        p2 = Point(self.xmax, self.ymax)
+        self.rect = Rectangle(p1,p2)
+        self.rect.setFill('lightgray')
+        self.rect.draw(win)
+        self.label = Text(center, label)
+        self.label.draw(win)
+        self.deactivate()
+
+    def clicked(self, p):
+        """Returns true if button active and p is inside"""
+        if not p == None:
+            return (self.active and
+            self.xmin <= p.getX() <= self.xmax and
+            self.ymin <= p.getY() <= self.ymax)
+
+    def getLabel(self):
+        """Returns the label string of this button."""
+        return self.label.getText()
+
+    def activate(self):
+        """Sets this button to 'active'."""
+        self.label.setFill('black')
+        self.rect.setWidth(1)
+        self.active = True
+
+    def deactivate(self):
+        """Sets this button to 'inactive'."""
+        self.label.setFill('darkgrey')
+        self.rect.setWidth(0)
+        self.active = False
+
+    def delete(self):
+        """Undraws the button"""
+        self.deactivate()
+        self.label.undraw()
+        self.rect.undraw()
+
 def create_room(room_num):
     room_objs = []
     encounter_objs = []
@@ -42,12 +92,12 @@ def testroom():
     win.setBackground('slate blue')
 
     # Change num to change test room
-    room_num = 2
+    room_num = 1
 
-    room_img = Image(Point(250, 250), "rooms_img/{}.gif".format(room_num))
+    room_img = Image(Point(250, 250), "assets/rooms_img/{}.gif".format(room_num))
     room_img.draw(win)
 
-    room_objs = create_room(room_num)
+    room_objs, encounter_objs = create_room(room_num)
 
     for obj in room_objs:
         if isinstance(obj, Rectangle):
@@ -55,7 +105,7 @@ def testroom():
             obj.setWidth(1)
             obj.draw(win)
 
-    new_rect_but = Button(win, Point(550, 100), 50, 30, 'New Rect')
+    new_rect_but = Button(win, Point(550, 100), 80, 30, 'New Rect')
     finish = Button(win, Point(550, 400), 50, 30, 'Done')
 
     new_rect_but.activate()
