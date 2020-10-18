@@ -1,6 +1,7 @@
 from graphics import *
 from time import sleep, perf_counter
 from random import randint
+import tkinter as tk
 
 """
 CC0 (Public domain) background assets are from https://opengameart.org/content/colony-sim-extended-version
@@ -30,27 +31,6 @@ import keyboard
 # (Can only play one .wav sound file at a time, but can stop using None as its filename
 import winsound
 
-class Encounter:
-    def __init__(self, encounter_num):
-        if encounter_num == 1:
-            pass
-
-
-class AudioSystem:
-    def __init__(self):
-        self.mute = False
-
-    def play_music(self, filename):
-        if not self.mute:
-            winsound.PlaySound(filename, A_SYNC)
-
-    def play_effect(self, filename):
-        if not self.mute:
-            playsound(filename)
-
-    def mute(self, is_mute=True):
-        self.mute = is_mute
-
 class StartMenu:
     def __init__(self, win):
         background = overground("white")
@@ -78,6 +58,28 @@ class StartMenu:
 
             elif keyboard.is_pressed('esc'):
                 ExitMenu(win)
+
+
+class Encounter:
+    def __init__(self, encounter_num):
+        if encounter_num == 1:
+            pass
+
+class AudioSystem:
+    def __init__(self):
+        self.mute = False
+
+    def play_music(self, filename):
+        if not self.mute:
+            winsound.PlaySound(filename, A_SYNC)
+
+    def play_effect(self, filename):
+        if not self.mute:
+            playsound(filename)
+
+    def mute(self, is_mute=True):
+        self.mute = is_mute
+
 
 
 class Character:
