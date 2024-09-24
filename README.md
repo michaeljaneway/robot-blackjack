@@ -6,11 +6,9 @@ A barebones prototype for a topdown 2D RPG Blackjack game built on a Python GUI 
 Currently on hold due to school and work.
 
 Currently features:
-* A start screen with a pretty cool cat
-
 * WASD controlled animated robot
 
-* Full (slightly janky) player collision
+* Full player collision
 
 * A seperate rooms.py program that holds the roomtype data as well, as functioning as a quick way to draw room collision boxes when run
 
